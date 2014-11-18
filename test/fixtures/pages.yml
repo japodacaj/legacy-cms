@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: pages
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  slug         :string(255)
+#  ancestry     :string(255)
+#  site_id      :integer
+#  url          :string(255)
+#  published_at :datetime
+#  expired_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  content: MyText
+
+two:
+  name: MyString
+  content: MyText

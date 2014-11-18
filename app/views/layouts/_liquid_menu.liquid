@@ -1,0 +1,11 @@
+{% for page in page[1]}
+
+	{% if page[0].url? %}
+		<a href={{ page[0].url | link_to }}>{{ page[0].name }}</a>
+	{% else %}	
+		<a href="/pages/{{ page[0].slug }}">{{ page[0].name }}</a>
+	{% endif %}
+
+	{% template 'layouts/liquid_menu' with page[1]}
+
+{% endfor %}

@@ -1,0 +1,3 @@
+<% if @site && @navbar %>
+	<%= liquidize @navbar.content.body, 'site' => @site %>
+<% end %>

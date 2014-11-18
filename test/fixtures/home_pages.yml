@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: home_pages
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  active     :boolean
+#  site_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  active: false
+  site_id: 
+
+two:
+  name: MyString
+  active: false
+  site_id: 

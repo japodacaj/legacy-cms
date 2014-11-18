@@ -1,0 +1,24 @@
+<%= form_for [:admin, @page_element], :html => { class: 'form-horizontal' } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.select :name, PageElement::ELEMENTS, {prompt: 'Select An Element'}, {class: 'form-control'} %>
+    </div>
+  </div>
+
+  <%= f.fields_for :content do |content| %>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <%= content.text_area :body, class: 'form-control my-code' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">  
+    <div class="col-sm-offset-2 col-sm-4">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), admin_page_elements_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

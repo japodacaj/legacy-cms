@@ -1,0 +1,3 @@
+<% if @site && @footer %>
+	<%= liquidize @footer.content.body, 'site' => @site %>
+<% end %>

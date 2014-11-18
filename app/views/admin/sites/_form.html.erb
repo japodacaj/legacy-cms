@@ -1,0 +1,100 @@
+<%= form_for [:admin, @site], :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :parent_id, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.collection_select :parent_id, Site.order(:name), :id, :name, {prompt: "Select a Parent"}, {class: 'form-control'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :short_name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :short_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <%= f.fields_for :address do |builder| %>
+    <div class="form-group">
+      <%= builder.label :line1, 'Address Line 1', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= builder.text_field :line1, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= builder.label :line2, 'Address Line 2', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= builder.text_field :line2, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= builder.label :city, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= builder.text_field :city, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= builder.label :state, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= builder.text_field :state, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= builder.label :zip, 'Zip Code', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= builder.text_field :zip, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <%= f.fields_for :site_aliases do |builder| %>
+    <div class="form-group">
+      <%= builder.label :name, 'Domain Alias', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= builder.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-4">
+        <div class="checkbox">
+          <label>
+            <%= builder.check_box :_destroy %> Remove Alias
+          </label>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <%= f.collection_check_boxes :user_ids, User.all, :id, :username do |b| %>
+        <div class="checkbox"> 
+            <%= b.label { b.check_box + b.text} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :layout, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.select :layout, Site::LAYOUTS, {prompt: "Select a Layout"}, {class: 'form-control'} %>
+    </div>
+  </div>
+
+  <div class="form-group">  
+    <div class="col-sm-offset-2 col-sm-4">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), admin_sites_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h1>Sites</h1>
+</div>
+<table class="table table-condensed table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Parent</th>
+      <th>Short Name</th>
+      <th>Updated</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr>
+        <td><%= link_to site.name, root_url(subdomain: site.slug) %></td>
+        <td><%= site.parent %></td>
+        <td><%= site.short_name %></td>
+        <td><%= site.slug %></td>
+        <td><%= site.updated_at.to_formatted_s(:long) %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_site_path(site), class: 'btn btn-default btn-xs' %>
+          <%= link_to 'Destroy', admin_site_path(site), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if can? :create, @site %>
+  <div class="form-actions">
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_admin_site_path,
+            :class => 'btn btn-primary' %>
+  </div>
+<% end %>

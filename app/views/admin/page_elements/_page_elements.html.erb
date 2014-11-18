@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Elements</h1>
+</div>
+<table class="table table-condensed table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Updated</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @page_elements.each do |page_element| %>
+      <tr>
+        <td><%= page_element.name %></td>
+        <td><%= page_element.updated_at.to_formatted_s(:long) %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_page_element_path(page_element), class: 'btn btn-default btn-xs' %>
+          <%= link_to 'Destroy', admin_page_element_path(page_element), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if can? :manage, @page_element %>
+  <div class="form-actions">
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_admin_page_element_path,
+            :class => 'btn btn-primary' %>
+  </div>
+<% end %>

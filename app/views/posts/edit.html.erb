@@ -1,0 +1,9 @@
+<% content_for :title do %>
+	Edit Post | <%= @category.name %> | <%= @site.name %>
+<% end %>
+
+<div class="page-header">
+  <h1>Edit Post</h1>
+</div>
+
+<%= render 'form' %>

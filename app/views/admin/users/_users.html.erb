@@ -1,0 +1,27 @@
+<table class="table table-condensed table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Sign In Count</th>
+      <th>Last Sign In IP</th>
+      <th>Last Sign In Date</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= "#{user.roles.collect{|r| r.name}}" %></td>
+        <td><span class="badge"><%= user.sign_in_count %></span></td>
+        <td><%= user.last_sign_in_ip %></td>
+        <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td>
+      <td>
+      <%= link_to "Edit Role", edit_admin_user_path(user), :class => 'btn btn-mini' %>    
+      <%= link_to "Destroy User", admin_user_path(user), :method => 'delete', data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

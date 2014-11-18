@@ -1,0 +1,3 @@
+<% if @site && @header %>
+	<%= liquidize @header.content.body, 'site' => @site %>
+<% end %>

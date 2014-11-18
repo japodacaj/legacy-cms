@@ -1,0 +1,7 @@
+<% content_for :title do %>
+	<%= @site.name %>
+<% end %>
+
+<%= render 'layouts/messages' %> 
+
+<%= liquidize @home_page.content.body, 'site' => @site if @home_page %>

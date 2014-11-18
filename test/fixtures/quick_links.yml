@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: quick_links
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  site_id    :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  linkable_id: 
+
+two:
+  name: MyString
+  linkable_id: 

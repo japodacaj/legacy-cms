@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>Edit Role
+    <span style="float:right;">
+      <a class="btn" href=<%="#{admin_users_path}"%>>
+        <i class="icon-remove"></i> Cancel
+      </a>
+    </span>
+  </h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>User:</strong></dt>
+  <dd><%= @user.email %></dd>
+</dl>
+
+<%= render 'form' %>

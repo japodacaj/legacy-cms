@@ -1,0 +1,48 @@
+<%= form_for @page, :html => { class: 'form-horizontal' } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :url, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.url_field :url, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :parent_id, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.collection_select :parent_id, Page.order(:name), :id, :name, {prompt: "Select a Parent", include_blank: true}, {class: 'form-control'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_ids, 'Assign Managers', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.collection_check_boxes :user_ids, User.all, :id, :full_name do |b| %>
+        <div class="checkbox"> 
+            <%= b.label { b.check_box + b.text} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.fields_for :content do |content| %>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <%= content.cktext_area :body, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">  
+    <div class="col-sm-offset-2 col-sm-4">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), pages_url, class: 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<ul>
+  {% for page in page[1] %}
+    <li>
+      <a href="{{ page[0].page_url }}">{{ page[0].name }}</a>
+      	{% if page[0].has_children? %}
+      		{% include 'shared/sublinks' with page[1] %}
+    		{% endif %}
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,33 @@
+<% content_for :title do %>
+	<%= @menu.name %> | <%= @site.name %>
+<% end %>
+
+<div class="page-header">
+  <h2><%=@menu.name %></h2>
+</div>
+
+<div>
+
+<ul class="links" data-update-url="<%= sort_admin_menu_url(@menu) %>">
+	<% @menu.links.each do |position| %>
+	  <%= content_tag_for :li, position do %>
+	    <span class="handle">[drag]</span>
+	    <%= link_to position.item_name, position.item_url %>
+	  <% end %>
+	<% end %>
+</ul>
+</div>
+
+<hr>
+
+<% if can? :manage, @menu %>
+	<div class="form-actions">
+	  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	              edit_admin_menu_path(@menu), :class => 'btn btn-default' %>
+	  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	              admin_menu_path(@menu),
+	              :method => 'delete',
+	              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+	              :class => 'btn btn-danger' %>
+	</div>
+<% end %>

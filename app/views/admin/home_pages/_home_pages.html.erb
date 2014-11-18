@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Home Pages</h1>
+</div>
+<table class="table table-condensed table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Updated</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @home_pages.each do |home_page| %>
+      <tr>
+        <td><%= home_page.name %></td>
+        <td><%= 'Active' if home_page.active %></td>
+        <td><%= home_page.updated_at.to_formatted_s(:long) %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_home_page_path(home_page), class: 'btn btn-default btn-xs' %>
+          <%= link_to 'Destroy', admin_home_page_path(home_page), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if can? :create, @home_page %>
+  <div class="form-actions">
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_admin_home_page_path,
+              :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+

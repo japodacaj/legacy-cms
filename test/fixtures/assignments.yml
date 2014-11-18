@@ -1,0 +1,19 @@
+# == Schema Information
+#
+# Table name: assignments
+#
+#  id              :integer          not null, primary key
+#  assignable_id   :integer
+#  assignable_type :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  user_id         :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  assignable_id: 
+
+two:
+  assignable_id: 
